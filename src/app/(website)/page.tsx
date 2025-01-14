@@ -7,6 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
+import { LogoSmall } from '@/svgs/logo-small'
 import { CheckCircle, MenuIcon } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -45,33 +46,26 @@ export default function Home() {
         <div className="relative">
           <div className="container px-4 py-8">
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <div className="h-8 w-8 rounded-lg bg-white flex items-center justify-center font-bold">
-                  li
-                </div>
-                <span className="text-xl font-semibold text-primary-foreground">
-                  Slide
-                </span>
+              <div className="flex items-center gap-2 w-[95px]">
+                <LogoSmall/>
               </div>
               <nav className="hidden space-x-6 text-sm text-blue-200 md:block">
-                <Link href="#features">Features</Link>
-                <Link href="#pricing">Pricing</Link>
-                <Link href="#about">About</Link>
+                <Link href="#features">Funcionalidades</Link>
+                <Link href="#pricing">Preços</Link>
+                <Link href="#about">Sobre</Link>
               </nav>
-              <Button className="bg-white text-primary">
-                <Link href="/dashboard">Login</Link>
+              <Button>
+                <Link href="/dashboard">Entrar</Link>
               </Button>
             </div>
 
             <div className="mx-auto mt-16 max-w-3xl text-center">
               <h1 className="text-4xl font-bold leading-tight tracking-tighter text-white sm:text-5xl md:text-6xl lg:text-7xl">
-                Transform Your Instagram Engagement with Slide
+                Bem-vindo ao nosso Web App de Sorteios!
               </h1>
 
               <p className="mt-6 text-lg text-blue-200">
-                Slide revolutionizes how you connect with your audience on
-                Instagram. Automate responses and boost engagement effortlessly,
-                turning interactions into valuable business opportunities.
+                Nosso aplicativo web oferece uma forma fácil e agradável para os usuários criarem, participarem e compartilharem sorteios. Seja um entusiasta de sorteios ou um jogador de primeira viagem, temos algo emocionante reservado para você.
               </p>
 
               <div className="mt-8 flex justify-center gap-4">
@@ -79,14 +73,14 @@ export default function Home() {
                   size="lg"
                   className="bg-blue-600 text-white hover:bg-blue-700"
                 >
-                  Get Started
+                  Criar Rifa
                 </Button>
                 <Button
                   size="lg"
                   variant="outline"
                   className="border-blue-400  hover:bg-blue-900/50"
                 >
-                  Learn More
+                  Saiba Mais
                 </Button>
               </div>
             </div>

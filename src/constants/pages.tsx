@@ -1,10 +1,10 @@
 import {
   AutomationDuoToneBlue,
   ContactsDuoToneBlue,
-  HomeDuoToneBlue,
   RocketDuoToneBlue,
   SettingsDuoToneWhite,
 } from '@/icons'
+import { HouseIcon } from 'lucide-react'
 
 export const PAGE_BREAD_CRUMBS: string[] = [
   'contacts',
@@ -22,7 +22,7 @@ export const PAGE_ICON: Props = {
   CONTACTS: <ContactsDuoToneBlue />,
   INTEGRATIONS: <RocketDuoToneBlue />,
   SETTINGS: <SettingsDuoToneWhite />,
-  HOME: <HomeDuoToneBlue />,
+  HOME: <HouseIcon />,
 }
 
 export const PLANS = [
