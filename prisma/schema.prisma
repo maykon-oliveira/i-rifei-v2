@@ -14,15 +14,19 @@ datasource db {
 }
 
 model User {
-  id           String         @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  clerkId      String         @unique
-  email        String         @unique
-  firstname    String?        @unique
-  lastname     String?        @unique
-  createdAt    DateTime       @default(now())
-  subscription Subscription?
-  integrations Integrations[]
-  automations  Automation[]
+  id             String         @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  clerkId        String         @unique
+  email          String         @unique
+  firstname      String?        @unique
+  lastname       String?        @unique
+  createdAt      DateTime       @default(now())
+  subscription   Subscription?
+  integrations   Integrations[]
+  automations    Automation[]
+  purchases      Purchase[]
+  createdRiffles Raffle[]       @relation("Creator")
+  RaffleNumber   RaffleNumber[]
+  Notification   Notification[]
 }
 
 model Subscription {
@@ -125,4 +129,86 @@ enum MEDIATYPE {
 enum LISTENERS {
   SMARTAI
   MESSAGE
+}
+
+model Raffle {
+  id           String         @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name         String
+  description  String
+  startDate    DateTime
+  endDate      DateTime
+  totalNumbers Int
+  numbers      RaffleNumber[]
+  purchases    Purchase[]
+  creatorId    String         @db.Uuid
+  creator      User           @relation("Creator", fields: [creatorId], references: [id])
+  winners      Winner[]
+  createdAt    DateTime       @default(now())
+  Notification Notification[]
+}
+
+model RaffleNumber {
+  id         String             @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  raffleId   String             @db.Uuid
+  raffle     Raffle             @relation(fields: [raffleId], references: [id])
+  number     Int
+  status     RaffleNumberStatus @default(AVAILABLE)
+  purchaseId String?            @db.Uuid
+  purchase   Purchase?          @relation(fields: [purchaseId], references: [id])
+  buyerId    String?            @db.Uuid
+  buyer      User?              @relation(fields: [buyerId], references: [id])
+  Winner     Winner[]
+}
+
+enum RaffleNumberStatus {
+  AVAILABLE
+  RESERVED
+  SOLD
+}
+
+model Purchase {
+  id            String         @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  userId        String         @db.Uuid
+  user          User           @relation(fields: [userId], references: [id])
+  raffleId      String         @db.Uuid
+  raffle        Raffle         @relation(fields: [raffleId], references: [id])
+  raffleNumbers RaffleNumber[]
+  purchaseDate  DateTime       @default(now())
+  payments      Payment[]
+}
+
+model Payment {
+  id            String        @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  purchaseId    String        @db.Uuid
+  purchase      Purchase      @relation(fields: [purchaseId], references: [id])
+  paymentMethod String
+  amount        Float
+  status        PaymentStatus @default(PENDING)
+  paymentDate   DateTime?
+}
+
+enum PaymentStatus {
+  PENDING
+  COMPLETED
+  FAILED
+}
+
+model Winner {
+  id             String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  raffleId       String       @db.Uuid
+  raffle         Raffle       @relation(fields: [raffleId], references: [id])
+  raffleNumberId String       @db.Uuid
+  raffleNumber   RaffleNumber @relation(fields: [raffleNumberId], references: [id])
+  winDate        DateTime     @default(now())
+}
+
+model Notification {
+  id       String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  userId   String   @db.Uuid
+  user     User     @relation(fields: [userId], references: [id])
+  raffleId String?  @db.Uuid
+  raffle   Raffle?  @relation(fields: [raffleId], references: [id])
+  type     String
+  message  String
+  sentAt   DateTime @default(now())
 }
