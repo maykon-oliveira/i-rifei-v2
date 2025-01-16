@@ -5,9 +5,9 @@ import React from 'react'
 import Items from './items'
 import { Separator } from '@/components/ui/separator'
 import ClerkAuthState from '../clerk-auth-state'
-import { HelpDuoToneWhite } from '@/icons'
 import { SubscriptionPlan } from '../subscription-plan'
 import UpgradeCard from './upgrade'
+import { CircleHelpIcon } from 'lucide-react'
 
 type Props = {
   slug: string
@@ -69,7 +69,7 @@ const Sidebar = ({ slug }: Props) => {
             <p className="text-[#9B9CA0]">Profile</p>
           </div>
           <div className="flex gap-x-3">
-            <HelpDuoToneWhite />
+            <CircleHelpIcon />
             <p className="text-[#9B9CA0]">Help</p>
           </div>
         </div>

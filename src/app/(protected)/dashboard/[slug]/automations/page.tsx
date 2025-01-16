@@ -1,5 +1,5 @@
 import AutomationList from '@/components/global/automation-list'
-import CreateAutomation from '@/components/global/create-automation'
+import CreateRaffle from '@/components/global/create-raffle'
 import { Check } from 'lucide-react'
 import React from 'react'
 
@@ -38,7 +38,7 @@ const Page = (props: Props) => {
               </div>
             ))}
           </div>
-          <CreateAutomation />
+          <CreateRaffle />
         </div>
       </div>
     </div>

@@ -2,17 +2,16 @@
 
 import { PAGE_BREAD_CRUMBS } from '@/constants/pages'
 import { usePaths } from '@/hooks/user-nav'
-import { Menu } from 'lucide-react'
+import { HelpCircleIcon, Menu } from 'lucide-react'
 import React from 'react'
 import Sheet from '../sheet'
 import Items from '../sidebar/items'
 import { Separator } from '@/components/ui/separator'
 import ClerkAuthState from '../clerk-auth-state'
-import { HelpDuoToneWhite } from '@/icons'
 import { SubscriptionPlan } from '../subscription-plan'
 import UpgradeCard from '../sidebar/upgrade'
 import { LogoSmall } from '@/svgs/logo-small'
-import CreateAutomation from '../create-automation'
+import CreateRaffle from '../create-raffle'
 import Search from './search'
 import { Notifications } from './notifications'
 import MainBreadCrumb from '../bread-crumbs/main-bread-crumb'
@@ -54,11 +53,11 @@ const InfoBar = ({ slug }: Props) => {
                 <div className="px-3 flex flex-col gap-y-5">
                   <div className="flex gap-x-2">
                     <ClerkAuthState />
-                    <p className="text-[#9B9CA0]">Profile</p>
+                    <p className="text-[#9B9CA0]">Perfil</p>
                   </div>
                   <div className="flex gap-x-3">
-                    <HelpDuoToneWhite />
-                    <p className="text-[#9B9CA0]">Help</p>
+                    <HelpCircleIcon />
+                    <p className="text-[#9B9CA0]">Ajuda</p>
                   </div>
                 </div>
                 <SubscriptionPlan type="FREE">
@@ -70,7 +69,7 @@ const InfoBar = ({ slug }: Props) => {
             </Sheet>
           </span>
           <Search />
-          <CreateAutomation />
+          <CreateRaffle />
           <Notifications />
         </div>
         <MainBreadCrumb

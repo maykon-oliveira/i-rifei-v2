@@ -6,7 +6,7 @@ import React, { useMemo } from 'react'
 import GradientButton from '../gradient-button'
 import { Button } from '@/components/ui/button'
 import { useQueryAutomations } from '@/hooks/user-queries'
-import CreateAutomation from '../create-automation'
+import CreateRaffle from '../create-raffle'
 import { useMutationDataState } from '@/hooks/use-mutation-data'
 
 type Props = {}
@@ -30,7 +30,7 @@ const AutomationList = (props: Props) => {
     return (
       <div className="h-[70vh] flex justify-center items-center flex-col gap-y-3">
         <h3 className="text-lg text-gray-400">No Automations </h3>
-        <CreateAutomation />
+        <CreateRaffle />
       </div>
     )
   }

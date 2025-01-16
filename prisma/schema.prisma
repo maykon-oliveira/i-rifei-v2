@@ -24,7 +24,7 @@ model User {
   integrations   Integrations[]
   automations    Automation[]
   purchases      Purchase[]
-  createdRiffles Raffle[]       @relation("Creator")
+  createdRaffles Raffle[]       @relation("Creator")
   RaffleNumber   RaffleNumber[]
   Notification   Notification[]
 }
@@ -132,19 +132,26 @@ enum LISTENERS {
 }
 
 model Raffle {
-  id           String         @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  name         String
-  description  String
-  startDate    DateTime
-  endDate      DateTime
-  totalNumbers Int
-  numbers      RaffleNumber[]
-  purchases    Purchase[]
-  creatorId    String         @db.Uuid
-  creator      User           @relation("Creator", fields: [creatorId], references: [id])
-  winners      Winner[]
-  createdAt    DateTime       @default(now())
-  Notification Notification[]
+  id            String         @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name          String
+  description   String?
+  status        RaffleStatus   @default(DRAFT)
+  drawDate      DateTime
+  createdAt     DateTime       @default(now())
+  totalNumbers  Int
+  creatorId     String         @db.Uuid
+  creator       User           @relation("Creator", fields: [creatorId], references: [id])
+  winners       Winner[]
+  numbers       RaffleNumber[]
+  purchases     Purchase[]
+  notifications Notification[]
+}
+
+enum RaffleStatus {
+  DRAFT // Raffle is being prepared and not yet visible to others
+  PUBLISHED // Raffle is live and visible to users
+  COMPLETED // Raffle has ended, and winners have been selected
+  CANCELED // Raffle has been canceled and is no longer active
 }
 
 model RaffleNumber {
