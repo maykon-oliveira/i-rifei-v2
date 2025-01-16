@@ -1,11 +1,11 @@
 'use client'
-import { useQueryAutomations } from '@/hooks/user-queries'
+import { useQueryRaffles } from '@/hooks/user-queries'
 import React from 'react'
 
 type Props = {}
 
 const MetricsCard = (props: Props) => {
-  const { data } = useQueryAutomations()
+  const { data } = useQueryRaffles()
   const comments = data?.data.reduce((current, next) => {
     return current + next.listener?.commentCount!
   }, 0)

@@ -1,6 +1,5 @@
 import { z } from 'zod'
 import {
-  createAutomations,
   deleteKeyword,
   saveKeyword,
   saveListener,
@@ -15,16 +14,6 @@ import useZodForm from './use-zod-form'
 import { AppDispatch, useAppSelector } from '@/redux/store'
 import { useDispatch } from 'react-redux'
 import { TRIGGER } from '@/redux/slices/automation'
-
-export const useCreateAutomation = (id?: string) => {
-  const { isPending, mutate } = useMutationData(
-    ['create-automation'],
-    () => createAutomations(id),
-    'user-automations'
-  )
-
-  return { isPending, mutate }
-}
 
 export const useEditAutomation = (automationId: string) => {
   const [edit, setEdit] = useState(false)

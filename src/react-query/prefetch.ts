@@ -1,4 +1,5 @@
-import { getAllAutomations, getAutomationInfo } from '@/actions/automations'
+import { getAutomationInfo } from '@/actions/automations'
+import { getAllRaffles } from '@/actions/raffles'
 import { onUserInfo } from '@/actions/user'
 import { QueryClient, QueryFunction } from '@tanstack/react-query'
 
@@ -18,8 +19,8 @@ export const PrefetchUserProfile = async (client: QueryClient) => {
   return await prefetch(client, onUserInfo, 'user-profile')
 }
 
-export const PrefetchUserAutnomations = async (client: QueryClient) => {
-  return await prefetch(client, getAllAutomations, 'user-automations')
+export const PrefetchUserRaffles = async (client: QueryClient) => {
+  return await prefetch(client, getAllRaffles, 'user-raffles')
 }
 
 export const PrefetchUserAutomation = async (

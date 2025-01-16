@@ -7,7 +7,7 @@ import InfoBar from '@/components/global/infobar'
 import Sidebar from '@/components/global/sidebar'
 import React from 'react'
 import {
-  PrefetchUserAutnomations,
+  PrefetchUserRaffles,
   PrefetchUserProfile,
 } from '@/react-query/prefetch'
 
@@ -23,7 +23,7 @@ const Layout = async ({ children, params }: Props) => {
 
   await PrefetchUserProfile(query)
 
-  await PrefetchUserAutnomations(query)
+  await PrefetchUserRaffles(query)
 
   return (
     <HydrationBoundary state={dehydrate(query)}>

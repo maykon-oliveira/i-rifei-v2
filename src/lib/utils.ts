@@ -37,3 +37,13 @@ export const duplicateValidation = (arr: string[], el: string) => {
     return arr
   }
 }
+
+export const formatDate = (date: Date, locale = 'pt-BR', options = {}) => {
+  const formatter = new Intl.DateTimeFormat(locale, {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    ...options, // Allows overriding default options
+  });
+  return formatter.format(date);
+}

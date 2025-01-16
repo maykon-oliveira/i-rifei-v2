@@ -24,3 +24,36 @@ export const createRaffle = async (clerkId: string, { drawDate, ...data }: Prism
     },
   })
 }
+
+export const getRaffles = async (clerkId: string) => {
+  return await client.user.findUnique({
+    where: {
+      clerkId,
+    },
+    select: {
+      createdRaffles: {
+        orderBy: {
+          createdAt: 'asc',
+        },
+
+        select: {
+          id: true,
+          drawDate: true,
+          name: true,
+          status: true,
+          createdAt: true,
+          totalNumbers: true,
+          purchases: {
+            select: {
+              _count: {
+                select: {
+                  raffleNumbers: true
+                }
+              }
+            }
+          }
+        }
+      },
+    },
+  })
+}
