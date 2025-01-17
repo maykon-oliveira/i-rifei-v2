@@ -2,8 +2,8 @@
 import { ChevronRight, PencilIcon } from 'lucide-react'
 import React from 'react'
 import ActivateAutomationButton from '../../activate-automation-button'
-import { useQueryAutomation } from '@/hooks/user-queries'
-import { useEditAutomation } from '@/hooks/use-automations'
+import { useQueryRaffle } from '@/hooks/user-queries'
+import { useEditRaffle } from '@/hooks/use-raffles'
 import { useMutationDataState } from '@/hooks/use-mutation-data'
 import { Input } from '@/components/ui/input'
 
@@ -11,16 +11,16 @@ type Props = {
   id: string
 }
 
-const AutomationsBreadCrumb = ({ id }: Props) => {
-  const { data } = useQueryAutomation(id)
-  const { edit, enableEdit, inputRef, isPending } = useEditAutomation(id)
+const RafflesBreadCrumb = ({ id }: Props) => {
+  const { data } = useQueryRaffle(id)
+  const { edit, enableEdit, inputRef, isPending } = useEditRaffle(id)
 
-  const { latestVariable } = useMutationDataState(['update-automation'])
+  const { latestVariable } = useMutationDataState(['update-raffle'])
 
   return (
     <div className="rounded-full w-full p-5 bg-[#18181B1A] flex items-center">
       <div className="flex items-center gap-x-3 min-w-0">
-        <p className="text-[#9B9CA0] truncate">Automations</p>
+        <p className="text-[#9B9CA0] truncate">Rifas</p>
         <ChevronRight
           className="flex-shrink-0"
           color="#9B9CA0"
@@ -30,7 +30,7 @@ const AutomationsBreadCrumb = ({ id }: Props) => {
             <Input
               ref={inputRef}
               placeholder={
-                isPending ? latestVariable.variables : 'Add a new name'
+                isPending ? latestVariable.variables : 'Digite o novo nome'
               }
               className="bg-transparent h-auto outline-none text-base border-none p-0"
             />
@@ -56,17 +56,12 @@ const AutomationsBreadCrumb = ({ id }: Props) => {
 
       <div className="flex items-center gap-x-5 ml-auto">
         <p className="hidden md:block text-text-secondary/60 text-sm truncate min-w-0">
-          All states are automatically saved
+          Os dados são salvos automaticamente
         </p>
-        <div className="flex gap-x-5 flex-shrink-0">
-          <p className="text-text-secondary text-sm truncate min-w-0">
-            Changes Saved
-          </p>
-        </div>
       </div>
       <ActivateAutomationButton id={id} />
     </div>
   )
 }
 
-export default AutomationsBreadCrumb
+export default RafflesBreadCrumb

@@ -57,3 +57,31 @@ export const getRaffles = async (clerkId: string) => {
     },
   })
 }
+
+export const findRaffle = async (id: string) => {
+  return await client.raffle.findUnique({
+    where: {
+      id,
+    },
+    include: {
+      numbers: true,
+      winners: true,
+      purchases: true
+    },
+  })
+}
+
+export const updateRaffle = async (
+  id: string,
+  update: {
+    name?: string
+    active?: boolean
+  }
+) => {
+  return await client.raffle.update({
+    where: { id },
+    data: {
+      name: update.name,
+    },
+  })
+}

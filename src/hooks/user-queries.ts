@@ -1,8 +1,7 @@
 import {
-  getAutomationInfo,
   getProfilePosts,
 } from '@/actions/automations'
-import { getAllRaffles } from '@/actions/raffles'
+import { getAllRaffles, getRaffleInfo } from '@/actions/raffles'
 import { onUserInfo } from '@/actions/user'
 import { useQuery } from '@tanstack/react-query'
 
@@ -13,10 +12,10 @@ export const useQueryRaffles = () => {
   })
 }
 
-export const useQueryAutomation = (id: string) => {
+export const useQueryRaffle = (id: string) => {
   return useQuery({
-    queryKey: ['automation-info'],
-    queryFn: () => getAutomationInfo(id),
+    queryKey: ['raffle-info'],
+    queryFn: () => getRaffleInfo(id),
   })
 }
 

@@ -1,5 +1,4 @@
-import { getAutomationInfo } from '@/actions/automations'
-import { getAllRaffles } from '@/actions/raffles'
+import { getAllRaffles, getRaffleInfo } from '@/actions/raffles'
 import { onUserInfo } from '@/actions/user'
 import { QueryClient, QueryFunction } from '@tanstack/react-query'
 
@@ -23,13 +22,13 @@ export const PrefetchUserRaffles = async (client: QueryClient) => {
   return await prefetch(client, getAllRaffles, 'user-raffles')
 }
 
-export const PrefetchUserAutomation = async (
+export const PrefetchUserRaffle = async (
   client: QueryClient,
-  automationId: string
+  raffleId: string
 ) => {
   return await prefetch(
     client,
-    () => getAutomationInfo(automationId),
-    'automation-info'
+    () => getRaffleInfo(raffleId),
+    'raffle-info'
   )
 }

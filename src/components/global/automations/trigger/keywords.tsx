@@ -1,7 +1,7 @@
 import { Input } from '@/components/ui/input'
 import { useKeywords } from '@/hooks/use-automations'
 import { useMutationDataState } from '@/hooks/use-mutation-data'
-import { useQueryAutomation } from '@/hooks/user-queries'
+import { useQueryRaffle } from '@/hooks/user-queries'
 import { X } from 'lucide-react'
 import React from 'react'
 
@@ -12,7 +12,7 @@ type Props = {
 export const Keywords = ({ id }: Props) => {
   const { onValueChange, keyword, onKeyPress, deleteMutation } = useKeywords(id)
   const { latestVariable } = useMutationDataState(['add-keyword'])
-  const { data } = useQueryAutomation(id)
+  const { data } = useQueryRaffle(id)
 
   return (
     <div className="bg-background-80 flex flex-col gap-y-3 p-3 rounded-xl">
