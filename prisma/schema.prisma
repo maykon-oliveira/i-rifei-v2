@@ -155,22 +155,15 @@ enum RaffleStatus {
 }
 
 model RaffleNumber {
-  id         String             @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  raffleId   String             @db.Uuid
-  raffle     Raffle             @relation(fields: [raffleId], references: [id], onDelete: Cascade)
+  id         String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  raffleId   String   @db.Uuid
+  raffle     Raffle   @relation(fields: [raffleId], references: [id], onDelete: Cascade)
   number     Int
-  status     RaffleNumberStatus @default(AVAILABLE)
-  purchaseId String?            @db.Uuid
-  purchase   Purchase?          @relation(fields: [purchaseId], references: [id])
-  buyerId    String?            @db.Uuid
-  buyer      User?              @relation(fields: [buyerId], references: [id])
-  Winner     Winner[]
-}
-
-enum RaffleNumberStatus {
-  AVAILABLE
-  RESERVED
-  SOLD
+  purchaseId String   @db.Uuid
+  purchase   Purchase @relation(fields: [purchaseId], references: [id])
+  buyerId    String   @db.Uuid
+  buyer      User     @relation(fields: [buyerId], references: [id])
+  winner     Winner[]
 }
 
 model Purchase {

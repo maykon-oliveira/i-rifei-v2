@@ -16,10 +16,10 @@ type Props = {}
 const CreateRaffle = (props: Props) => {
   // TODO: Close dialog after success
   // TODO: Form validation
-  // TODO: Generate totalNumbers values
   const mutationId = useMemo(() => v4(), [])
   const { isPending, mutate } = useCreateRaffle(mutationId)
   const [data, setData] = useState({ name: '', totalNumbers: 25, drawDate: new Date().toISOString() })
+  const totalNumbersList = [100, 75, 50, 25]
 
   return (
     <Dialog>
@@ -55,7 +55,7 @@ const CreateRaffle = (props: Props) => {
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="25">25 Números</SelectItem>
+                {totalNumbersList.map((n) => <SelectItem key={n} value={`${n}`}>{n} números</SelectItem>)}
               </SelectContent>
             </Select>
           </div>

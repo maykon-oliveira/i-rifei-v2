@@ -33,9 +33,6 @@ const RaffleList = (props: Props) => {
     )
   }
 
-  console.log(optimisticUiData.data);
-
-
   return (
     <div className="flex flex-col gap-y-3">
       {optimisticUiData.data!.map((raffle) => (
@@ -52,7 +49,7 @@ const RaffleList = (props: Props) => {
 
             <div className="rounded-full mt-3 bg-keyword-purple/15 px-3 py-1 border-2 border-keyword-purple">
               <p className="text-sm text-[#bfc0c3]">
-                {raffle.purchases.reduce((acc: number, cur: any) => cur._count.raffleNumbers + acc, 0)} / {raffle.totalNumbers}
+                {(raffle?.purchases || []).reduce((acc: number, cur: any) => cur._count.raffleNumbers + acc, 0)} / {raffle.totalNumbers}
               </p>
             </div>
           </div>

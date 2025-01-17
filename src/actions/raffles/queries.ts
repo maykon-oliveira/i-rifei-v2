@@ -13,11 +13,6 @@ export const createRaffle = async (clerkId: string, { drawDate, ...data }: Prism
         // TODO: timezone
         create: {
           drawDate: `${drawDate}:00Z`,
-          numbers: {
-            createMany: {
-              data: Array.from({ length: data.totalNumbers }, (_, i) => ({ number: i + 1 }))
-            }
-          },
           ...data
         },
       },
@@ -63,10 +58,14 @@ export const findRaffle = async (id: string) => {
     where: {
       id,
     },
-    include: {
-      numbers: true,
-      winners: true,
-      purchases: true
+    select: {
+      id: true,
+      name: true,
+      description: true,
+      drawDate: true,
+      totalNumbers: true,
+      status: true,
+      numbers: true
     },
   })
 }
