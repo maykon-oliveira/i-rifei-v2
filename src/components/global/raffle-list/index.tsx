@@ -22,7 +22,7 @@ const RaffleList = (props: Props) => {
       return { data: test }
     }
     return data || { data: [] }
-  }, [latestVariable, data])
+  }, [latestVariable, data])  
 
   if (data?.status !== 200 || data.data.length <= 0) {
     return (

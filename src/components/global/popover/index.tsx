@@ -16,11 +16,7 @@ const PopOver = ({ children, trigger, className }: Props) => {
   return (
     <Popover>
       <PopoverTrigger asChild>{trigger}</PopoverTrigger>
-      <PopoverContent
-        className={cn('bg-[#1D1D1D] shadow-lg rounded-xl', className)}
-        align="end"
-        side="bottom"
-      >
+      <PopoverContent className={cn('shadow-lg rounded-xl bg-gradient-to-br text-white from-[#6d60a3] via-[#9434E6] to-[#CC3BD4]', className)}>
         {children}
       </PopoverContent>
     </Popover>

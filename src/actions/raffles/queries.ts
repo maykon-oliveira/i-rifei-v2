@@ -10,9 +10,8 @@ export const createRaffle = async (clerkId: string, { drawDate, ...data }: Prism
     },
     data: {
       createdRaffles: {
-        // TODO: timezone
         create: {
-          drawDate: `${drawDate}:00Z`,
+          drawDate: (drawDate as Date).toISOString(),
           ...data
         },
       },
@@ -65,7 +64,30 @@ export const findRaffle = async (id: string) => {
       drawDate: true,
       totalNumbers: true,
       status: true,
-      numbers: true
+      numbers: {
+        select: {
+          id: true,
+          buyer: {
+            select: {
+              firstname: true,
+              lastname: true
+            }
+          },
+          number: true,
+          buyerId: true,
+          purchaseId: true,
+          raffleId: true,
+          purchase: {
+            select: {
+              _count: {
+                select: {
+                  payments: true
+                }
+              }
+            }
+          }
+        }
+      }
     },
   })
 }

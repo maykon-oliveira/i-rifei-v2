@@ -20,7 +20,7 @@ export const getAllRaffles = async () => {
   const user = await onCurrentUser()
   try {
     const raffles = await getRaffles(user.id)
-    
+
     if (raffles) return { status: 200, data: raffles.createdRaffles }
     return { status: 404, data: [] }
   } catch (error) {
