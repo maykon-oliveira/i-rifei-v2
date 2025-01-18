@@ -1,7 +1,7 @@
 'use server'
 
 import { client } from "@/lib/prisma"
-import { Prisma } from "@prisma/client"
+import { Prisma, RaffleStatus } from "@prisma/client"
 
 export const createRaffle = async (clerkId: string, { drawDate, ...data }: Prisma.RaffleCreateInput) => {
   return await client.user.update({
@@ -96,13 +96,14 @@ export const updateRaffle = async (
   id: string,
   update: {
     name?: string
-    active?: boolean
+    status?: RaffleStatus
   }
 ) => {
   return await client.raffle.update({
     where: { id },
     data: {
       name: update.name,
+      status: update.status,
     },
   })
 }

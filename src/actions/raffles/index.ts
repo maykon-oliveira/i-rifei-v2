@@ -1,5 +1,6 @@
 'use server'
 
+import { RaffleStatus } from "@prisma/client"
 import { onCurrentUser } from "../user"
 import { createRaffle, findRaffle, getRaffles, updateRaffle } from "./queries"
 
@@ -43,9 +44,7 @@ export const getRaffleInfo = async (id: string) => {
 export const updateRaffleName = async (
   raffleId: string,
   data: {
-    name?: string
-    active?: boolean
-    raffle?: string
+    name: string
   }
 ) => {
   await onCurrentUser()
@@ -55,6 +54,21 @@ export const updateRaffleName = async (
       return { status: 200, data: 'Rifa atualizada com sucesso!' }
     }
     return { status: 404, data: 'Oops! could not find automation' }
+  } catch (error) {
+    return { status: 500, data: 'Oops! something went wrong' }
+  }
+}
+
+export const updateRaffleStatus = async (id: string, data: { status: RaffleStatus }) => {
+  await onCurrentUser()
+  try {
+    const update = await updateRaffle(id, data)
+    if (update)
+      return {
+        status: 200,
+        data: `Rifa ${data.status === 'DRAFT' ? 'cancelada' : 'publicada'}`,
+      }
+    return { status: 404, data: 'Rifa não encontrada' }
   } catch (error) {
     return { status: 500, data: 'Oops! something went wrong' }
   }

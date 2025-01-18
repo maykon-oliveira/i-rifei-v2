@@ -19,7 +19,7 @@ export const useMutationData = (
     mutationFn,
     onSuccess: (data) => {
       if (onSuccess) onSuccess()
-      return toast(data?.status === 200 ? 'Success' : 'Error', {
+      return toast(data?.status === 200 ? 'Sucesso' : 'Erro', {
         description: data.data,
       })
     },

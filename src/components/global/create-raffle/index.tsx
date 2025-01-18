@@ -9,7 +9,7 @@ import { v4 } from 'uuid'
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
-import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 
 type Props = {}
 
@@ -19,7 +19,7 @@ const CreateRaffle = (props: Props) => {
   const mutationId = useMemo(() => v4(), [])
   const { isPending, mutate } = useCreateRaffle(mutationId)
   const [data, setData] = useState({ name: '', totalNumbers: 25, drawDate: new Date().toISOString() })
-  const totalNumbersList = [100, 75, 50, 25]
+  const totalNumbersList = [100, 72, 49, 25]
 
   return (
     <Dialog>

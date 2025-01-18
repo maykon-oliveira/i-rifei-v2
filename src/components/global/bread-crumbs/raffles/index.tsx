@@ -1,7 +1,7 @@
 'use client'
 import { ChevronRight, PencilIcon } from 'lucide-react'
 import React from 'react'
-import ActivateAutomationButton from '../../activate-automation-button'
+import SwitchRaffleStatus from '../../switch-raffle-status'
 import { useQueryRaffle } from '@/hooks/user-queries'
 import { useEditRaffle } from '@/hooks/use-raffles'
 import { useMutationDataState } from '@/hooks/use-mutation-data'
@@ -59,7 +59,7 @@ const RafflesBreadCrumb = ({ id }: Props) => {
           Os dados são salvos automaticamente
         </p>
       </div>
-      <ActivateAutomationButton id={id} />
+      <SwitchRaffleStatus id={id} />
     </div>
   )
 }

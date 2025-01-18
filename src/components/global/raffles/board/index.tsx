@@ -11,7 +11,7 @@ type Props = {
 const RaffleBoard = ({ id }: Props) => {
     const { data } = useQueryRaffle(id)
     const totalNumbers = data?.data?.totalNumbers || 0
-    const size = Math.sqrt(totalNumbers);
+    const size = Math.round(Math.sqrt(totalNumbers));
     const numbers = data?.data?.numbers
 
     return (
